@@ -16,7 +16,7 @@
 (defn create-document [req]
   (try
     (let [id (->> {:a "hola" :b "adios"}
-                  (log/info :action/performing) 
+                  (log/info :action/performing)
                   (merge {:_id (ObjectId.)})
                   (#(mc/insert-and-return (:db req) "holas" %))
                   :_id

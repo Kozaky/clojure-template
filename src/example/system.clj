@@ -6,30 +6,32 @@
             [io.pedestal.log :as log]
             [monger.core :as mg]
             [monger.credentials :as mcred]
-            [ring.adapter.jetty :as jetty])
+            [org.httpkit.server :as httpkit])
   (:gen-class)
   (:import [com.mongodb MongoOptions ServerAddress]))
 
 (def dbname "mydb")
 
 (def bootstrap
-  {:adapter/jetty {:handler (ig/ref :ring/handler) :env (ig/ref :config/environment)}
+  {:server/httpkit {:handler (ig/ref :ring/handler) :env (ig/ref :config/environment)}
    :ring/handler {:env (ig/ref :config/environment) :db (ig/ref :database.mongo/database)}
    :database.mongo/database {:conn (ig/ref :database.mongo/connection) :dbname dbname}
    :database.mongo/connection {:env (ig/ref :config/environment)}
    :config/environment {}})
 
-(defmethod ig/init-key :adapter/jetty [_ {:keys [handler env]}]
-  (jetty/run-jetty handler {:join? false :port (:app-port env)}))
+(defmethod ig/init-key :server/httpkit [_ {:keys [handler env]}]
+  (let [server (httpkit/run-server handler {:port (:app-port env)})]
+  (log/info :msg "Example is here to serve you!")
+  server))
 
-(defmethod ig/halt-key! :adapter/jetty [_ server]
-  (.stop server))
+(defmethod ig/halt-key! :server/httpkit [_ server]
+  (server))
 
 (defmethod ig/init-key :ring/handler [_ {:keys [env db]}]
   (server/handler env db))
 
 (defmethod ig/init-key :database.mongo/database [_ {:keys [conn dbname]}]
-  (let [db (mg/get-db conn dbname)] (log/info :db db) db))
+  (mg/get-db conn dbname))
 
 (defmethod ig/init-key :database.mongo/connection [_ {:keys [env]}]
   (let [host (:database-host env)

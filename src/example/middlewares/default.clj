@@ -13,13 +13,13 @@
                                    (handler (assoc req :env env :db db)))))})
 
 (def default-middlewares [;; swagger feature 
-                          swagger/swagger-feature 
+                          swagger/swagger-feature
                           ;; query-params & form-params
-                          parameters/parameters-middleware 
+                          parameters/parameters-middleware
                           ;; content-negotiation
-                          muuntaja/format-negotiate-middleware 
+                          muuntaja/format-negotiate-middleware
                           ;; encoding response body
-                          muuntaja/format-response-middleware 
+                          muuntaja/format-response-middleware
                           ;; exception handling
                           exception/exception-middleware
                           ;; decoding request body
