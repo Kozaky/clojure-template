@@ -4,6 +4,7 @@
 /.cpcache
 /.clj-kondo
 /.lsp
+/example
 pom.xml
 pom.xml.asc
 *.jar

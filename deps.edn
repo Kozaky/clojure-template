@@ -8,8 +8,9 @@
         metosin/reitit {:mvn/version "0.6.0"}
         metosin/jsonista {:mvn/version "0.3.7"}
         http-kit/http-kit {:mvn/version "2.6.0"}
-
+        javax.servlet/servlet-api {:mvn/version "2.5"} 
         com.novemberain/monger {:mvn/version "3.6.0"}
+        
         integrant/integrant {:mvn/version "0.8.0"}
         com.novemberain/langohr {:mvn/version "5.4.0" :exclusions [commons-logging/commons-logging]}}
 
