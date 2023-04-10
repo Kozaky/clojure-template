@@ -1,28 +1,21 @@
 (ns example.server
   (:require [example.middlewares.default :as mdlw]
             [example.routes.demo-routes :as demo-routes]
+            [honey.sql :as sql]
             [io.pedestal.log :as log]
-            [langohr.channel   :as lch]
-            [langohr.consumers :as lc]
-            [langohr.basic :as lb]
             [malli.util :as mu]
-            [monger.collection :as mc]
             [muuntaja.core :as m]
+            [next.jdbc :as jdbc]
             [reitit.coercion.malli]
             [reitit.dev.pretty :as pretty]
-            [reitit.ring :as ring])
-  (:import org.bson.types.ObjectId))
+            [reitit.ring :as ring]))
 
-(defn create-document [req]
-  (try
-    (let [id (->> {:a "hola" :b "adios"}
-                  (log/info :action/performing)
-                  (merge {:_id (ObjectId.)})
-                  (#(mc/insert-and-return (:db req) "holas" %))
-                  :_id
-                  .toString)]
-      {:status 200 :body {:id id}})
-    (catch Exception e (log/error :error e))))
+(defn create-document [{:keys [db]}]
+  (->> {:select [:*]
+        :from [:company]}
+       sql/format
+       (jdbc/execute! db)
+       (assoc-in {:status 200} [:body :companies])))
 
 (def routes [demo-routes/demo-routes
              ["/db"

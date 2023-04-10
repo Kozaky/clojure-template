@@ -1,6 +1,7 @@
 {:app-port 3000
  :database-host "127.0.0.1"
- :database-port 27017
- :database-user "mongoadmin"
+ :database-name "mydb"
+ :database-user "postgres"
  :database-password "secret"
- :database-pool-size 10}
+ :database-pool-size 10
+ :database-timeout 30}
