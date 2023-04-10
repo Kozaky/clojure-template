@@ -3,5 +3,5 @@
  :database-name "mydb"
  :database-user "postgres"
  :database-password "secret"
- :database-pool-size 10
+ :database-pool-size 12
  :database-timeout 30}

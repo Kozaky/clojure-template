@@ -32,8 +32,8 @@
         :host (:database-host env)
         :username (:database-user env)
         :password (:database-password env)
-        :dataSourceProperties {:socketTimeout (:database-timeout env)
-                               :maximumPoolSize (:database-pool-size env)}}
+        :maximumPoolSize (:database-pool-size env)
+        :dataSourceProperties {:socketTimeout (:database-timeout env)}}
        (connection/->pool HikariDataSource)))
 
 (defmethod ig/init-key :config/environment [_ _]
