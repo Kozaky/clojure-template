@@ -1,22 +1,14 @@
-CREATE TABLE COMPANY(
+CREATE TABLE ITEMS(
     ID SERIAL PRIMARY KEY NOT NULL,
-    NAME TEXT NOT NULL,
-    AGE INT NOT NULL,
-    ADDRESS TEXT,
-    SALARY REAL
+    NAME TEXT NOT NULL
 );
 
 INSERT INTO
-    COMPANY (NAME, AGE, ADDRESS, SALARY)
+    ITEM (NAME)
 VALUES
-    (
-        'Julio Gómez Campanario',
-        28,
-        'Oetwil am See',
-        8365
-    );
+    ('Sugar');
 
 INSERT INTO
-    COMPANY (NAME, AGE, ADDRESS, SALARY)
+    ITEM (NAME)
 VALUES
-    ('Bohdana Andriienko', 25, 'Oetwil am See', 9000);
+    ('Meat');

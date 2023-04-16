@@ -1,7 +1,7 @@
 (ns example.system
   (:require [cprop.core :refer [load-config]]
             [cprop.source :as source]
-            [example.server :as server]
+            [example.infrastructure.server :as server]
             [integrant.core :as ig]
             [io.pedestal.log :as log]
             [org.httpkit.server :as httpkit]

@@ -1,6 +1,6 @@
 (ns example.server-test
   (:require [clojure.test :refer [deftest testing is]]
-            [example.server :refer [handler]]
+            [example.infrastructure.server :refer [handler]]
             [ring.mock.request :refer [request json-body]]))
 
 (deftest example-server
