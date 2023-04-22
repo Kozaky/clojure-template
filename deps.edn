@@ -19,7 +19,10 @@
         integrant/integrant {:mvn/version "0.8.0"}
         com.novemberain/langohr {:mvn/version "5.4.0" :exclusions [commons-logging/commons-logging]}}
 
- :aliases {:fmt/check {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.7"}}
+ :aliases {:build {:deps {io.github.clojure/tools.build {:git/tag "v0.9.4" :git/sha "76b78fe"}}
+                   :ns-default build}
+
+           :fmt/check {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.7"}}
                        :main-opts ["-m" "cljfmt.main" "check" "src" "test"]}
 
            :fmt/fix {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.7"}}

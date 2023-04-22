@@ -18,22 +18,13 @@ Check the tests running:
 ```
 #
 ## Docker Image
-A local docker image can be created using the jibbit plugin:
+A local docker image can be created running:
 
 ```clj
-> clojure -Ttools install io.github.atomisthq/jibbit '{:git/tag "v0.1.14"}' :as jib
+> docker build -t example/server:1.0.0 .
 ```
 
-```clj
-> clj -Tjib build
-```
-
-This will create a tar file that can be imported into Docker with:
-```
-> docker load < example/server   
-```
-
-Once we have imported the image, we can run the image as follows:
+Once we have created the image, we can run it as follows:
 ```
 > docker run --expose=3000 -p 3000:3000 -d example/server
 ```
