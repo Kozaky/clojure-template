@@ -1,21 +1,15 @@
-# reitit-ring, malli, swagger
+# Example
 
-## Local development
+## Useful commands
 
-Execute the following command to run the server: 
 ```clj
-> clj -M:server
+> clj -M:server        		# starts local server
+> clj -M:dev				# runs the REPL
+> clj -X:test				# checks tests
+> clj -M:fmt/check			# checks the format
+> clj -M:fmt/fix  			# fixes the format
 ```
 
-If we need REPL, we can just execute:
-```clj
-> clj -M:dev
-```
-
-Check the tests running:
-```clj
-> clj -X:test
-```
 #
 ## Docker Image
 A local docker image can be created running:
@@ -29,7 +23,10 @@ Once we have created the image, we can run it as follows:
 > docker run --expose=3000 -p 3000:3000 -d example/server
 ```
 
-In order to run the Postgresql service, we can have to run the docker image:
+#
+## Database Migration
+
+In order to run the Postgresql service, we can run a docker image:
 ```
 > docker run -d \
 	--name postgres \
@@ -43,7 +40,7 @@ In order to run the Postgresql service, we can have to run the docker image:
 docker run --name mydb -e POSTGRES_PASSWORD=secret -d -p 5432:5432 postgres
 ```
 
-Once it is running, we can run the migrations from the REPL:
+Once it is running, we can execute the migrations from the REPL:
 ```
 user=> (require '[ragtime.repl :as repl])
 nil
@@ -53,10 +50,4 @@ nil
 user=> (repl/rollback config)
 Rolling back 001-foo
 nil
-```
-
-Please keep the files correctly formatted by running the following commands:
-```
-clj -M:fmt/check
-clj -M:fmt/fix  
 ```
