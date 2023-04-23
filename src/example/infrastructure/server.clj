@@ -7,7 +7,8 @@
             [reitit.dev.pretty :as pretty]
             [reitit.ring :as ring]))
 
-(def routes [["/api"
+(def routes [["/" {:get {:handler (fn [_] {:status 200 :body "healthy"})}}]
+             ["/api"
               item-routes]])
 
 (defn router [env db]
