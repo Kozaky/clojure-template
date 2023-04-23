@@ -13,7 +13,7 @@ ARG APP=/usr/src/app
 ENV TZ=Etc/UTC \
     APP_USER=appuser
 
-EXPOSE 3000
+EXPOSE 80
 
 RUN groupadd $APP_USER \
     && useradd -g $APP_USER $APP_USER \
