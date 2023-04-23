@@ -1,0 +1,10 @@
+.git
+.env
+.idea
+.vscode
+cdk.out
+/target
+/.cpcache
+/.clj-kondo
+/.lsp
+/example
