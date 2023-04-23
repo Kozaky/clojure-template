@@ -1,4 +1,4 @@
-{:app-port 80
+{:app-port 8080
  :database-host "127.0.0.1"
  :database-name "mydb"
  :database-user "postgres"

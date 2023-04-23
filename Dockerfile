@@ -6,14 +6,13 @@ WORKDIR /example
 COPY . /example
 RUN clj -T:build uber
 
-#FROM openjdk:20-oraclelinux8
-FROM openjdk:17-jdk-slim-bullseye
+FROM openjdk:17
 ARG APP=/usr/src/app
 
 ENV TZ=Etc/UTC \
     APP_USER=appuser
 
-EXPOSE 80
+EXPOSE 8080
 
 RUN groupadd $APP_USER \
     && useradd -g $APP_USER $APP_USER \
